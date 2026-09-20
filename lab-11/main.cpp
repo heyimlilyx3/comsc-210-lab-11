@@ -10,9 +10,8 @@ struct album{
     int year;
 };
 
-album* inputAlbums(){       // function to input albums and return pointer to array of albums
+album* inputAlbums(int& numAlbums){       // function to input albums and return pointer to array of albums
 
-    int numAlbums;          // input number of albums from user
     cout << "Enter the number of albums: ";
     cin >> numAlbums;
 
@@ -44,9 +43,24 @@ album* inputAlbums(){       // function to input albums and return pointer to ar
 
 }
 
-int main() {
+void printAlbums(album* albums, int numAlbums) {   // function to print details of albums
+    for (int i = 0; i < numAlbums; i++) {
+        cout << "Album " << (i + 1) << ":" << endl;
+        cout << "Title: " << albums[i].title << endl;
+        cout << "Artist: " << albums[i].artist << endl;
+        cout << "Number of tracks: " << albums[i].numTracks << endl;
+        cout << "Tracklist: " << endl;
+        for (int j = 0; j < albums[i].numTracks; j++) {
+            cout << "\t" << (j + 1) << ". " << albums[i].tracklist[j] << endl;
+        }
+        cout << "Year: " << albums[i].year << endl;
+    }
+}
 
-    album* myAlbums = inputAlbums();
+int main() {
+    int numAlbums;
+    album* myAlbums = inputAlbums(numAlbums);
+    printAlbums(myAlbums, numAlbums);
 
     return 0;
 }
